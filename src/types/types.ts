@@ -2,6 +2,13 @@ export type ProcessType = 'WASHED' | 'NATURAL' | 'ANAEROBIC';
 
 export type MenuType = 'RECIPE' | 'BREWING_HISTORY';
 
+export interface BeanData {
+  country: string;
+  estate: string;
+  variety: string;
+  process: ProcessType;
+}
+
 export interface Recipe {
   id: number;
   name: string;
@@ -31,10 +38,5 @@ export interface BrewingHistory {
   created_at: Date;
   name: string;
   feedback: string;
-  bean_data: {
-    country: string;
-    estate: string;
-    variety: string;
-    process: ProcessType;
-  };
+  bean_data: BeanData;
 }

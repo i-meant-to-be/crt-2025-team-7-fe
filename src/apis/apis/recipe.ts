@@ -49,6 +49,7 @@ export async function getRecipeList(): Promise<GetRecipeListResponseType> {
     null,
     null,
   );
+
   return response.data;
 }
 
@@ -62,5 +63,6 @@ export async function postRecipe(
     data,
     null,
   );
+
   return response.data;
 }
