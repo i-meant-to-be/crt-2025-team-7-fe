@@ -1,1 +1,0 @@
-// PutHistoryResponseType placeholder
