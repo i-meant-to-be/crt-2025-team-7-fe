@@ -29,18 +29,10 @@ export default function RecipeAddModal({ onSuccess }: RecipeAddModalProps) {
       is_shared: isShareAvailable,
       steps,
     };
-    mutate(requestBody);
+    mutate(requestBody, {
+      onError: (error) => alert(`요청 중 오류 발생: ${error.message}`),
+    });
   };
-
-  useEffect(() => {
-    if (!isPending) {
-      if (isError) {
-        if (error) {
-          alert(`요청 중 오류 발생: ${error.message}`);
-        }
-      }
-    }
-  }, [isPending]);
 
   return (
     <div className="p-4 flex flex-col gap-4">
