@@ -5,6 +5,8 @@ import usePostHistory from '../../../apis/hooks/usePostHistory';
 import { PostHistoryRequestType } from '../../../apis/requests/PostHistoryRequestType';
 import useGetRecipeList from '../../../apis/hooks/useGetRecipeList';
 
+const ITEMS_PER_PAGE = 3;
+
 interface HistoryAddModalProps {
   onSuccess: () => void;
 }
@@ -50,9 +52,14 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
   const { feedback, country, estate, variety, process, recipeId } = state;
 
   const { data } = useGetRecipeList();
+  if (!data) {
+    return null;
+  } else {
+    dispatch({ type: 'SET_FIELD', field: 'recipeId', value: data.items[0].id });
+  }
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = ITEMS_PER_PAGE;
   const totalPages = Math.ceil(data!.items.length / itemsPerPage);
 
   const currentRecipes = data!.items.slice(
@@ -78,10 +85,6 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
       onError: (error) => alert(`요청 중 오류 발생: ${error.message}`),
     });
   };
-
-  if (!data) {
-    return null;
-  }
 
   return (
     <div className="p-4 flex flex-col gap-4">
