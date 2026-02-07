@@ -10,7 +10,7 @@ export const ApiUrl = {
     detail: (pk: string | number) => `/api/recipe/${pk}/`, // GET, PUT, PATCH, DELETE
   },
   history: {
-    list: '/history/', // GET 전체 조회, POST 생성
-    detail: (pk: string | number) => `/history/${pk}/`, // GET, PUT, PATCH, DELETE
+    list: '/brewing/brewing-history/', // GET 전체 조회, POST 생성
+    detail: (pk: string | number) => `/brewing/brewing-history/${pk}/`, // GET, PUT, PATCH, DELETE
   },
 };

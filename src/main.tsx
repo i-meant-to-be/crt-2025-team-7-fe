@@ -2,6 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
+import { GlobalPortal } from './utils/GlobalPortal';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import router from './routes/routes.tsx';
 
 if (import.meta.env.VITE_ENABLE_MOCKS === 'true') {
@@ -31,9 +33,24 @@ if (import.meta.env.VITE_ENABLE_MOCKS === 'true') {
 }
 
 function initializeApp() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        throwOnError: true,
+      },
+      mutations: {
+        throwOnError: true,
+      },
+    },
+  });
+
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <GlobalPortal.Provider>
+          <RouterProvider router={router} />
+        </GlobalPortal.Provider>
+      </QueryClientProvider>
     </StrictMode>,
   );
 }
