@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { deleteHistory } from '../apis/history';
 
-// useDeleteHistory hook placeholder
 export default function useDeleteHistory(id: number) {
   return useMutation({
     mutationFn: () => deleteHistory(id),

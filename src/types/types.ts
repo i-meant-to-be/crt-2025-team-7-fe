@@ -27,6 +27,10 @@ export interface RecipeSteps {
   guide: string;
 }
 
+export interface RecipeWithSteps extends Recipe {
+  steps: RecipeSteps[];
+}
+
 export interface User {
   id: number;
   username: string;

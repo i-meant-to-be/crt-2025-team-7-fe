@@ -1,5 +1,5 @@
-import { Recipe, RecipeSteps } from '../../types/types';
+import { RecipeWithSteps } from '../../types/types';
 
-export interface GetRecipeListResponseType extends Recipe {
-  steps: RecipeSteps[];
+export interface GetRecipeListResponseType {
+  items: RecipeWithSteps[];
 }
