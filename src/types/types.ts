@@ -1,5 +1,7 @@
 export type ProcessType = 'WASHED' | 'NATURAL' | 'ANAEROBIC';
 
+export type MenuType = 'RECIPE' | 'BREWING_HISTORY';
+
 export interface Recipe {
   id: string;
   name: string;
