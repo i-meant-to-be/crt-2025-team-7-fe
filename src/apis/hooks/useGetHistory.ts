@@ -1,1 +1,0 @@
-// useGetHistory hook placeholder
