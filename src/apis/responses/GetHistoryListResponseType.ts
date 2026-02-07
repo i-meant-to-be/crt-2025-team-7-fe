@@ -1,6 +1,4 @@
 import { BrewingHistory } from '../../types/types';
 
 // GetHistoryResponseType placeholder
-export interface GetHistoryListResponseType {
-  items: BrewingHistory[];
-}
+export type GetHistoryListResponseType = BrewingHistory[];

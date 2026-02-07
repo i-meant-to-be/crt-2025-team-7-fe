@@ -13,6 +13,8 @@ export default function Layout({ children }: PropsWithChildren) {
     setMenu(selectedMenu);
     if (selectedMenu === 'RECIPE') {
       navigate('/recipe'); // Navigate to /recipe when RECIPE is clicked
+    } else if (selectedMenu === 'BREWING_HISTORY') {
+      navigate('/history'); // Navigate to /history when BREWING_HISTORY is clicked
     }
   };
 

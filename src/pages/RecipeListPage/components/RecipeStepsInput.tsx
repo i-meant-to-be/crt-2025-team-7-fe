@@ -12,18 +12,17 @@ export default function RecipeStepsInput({
 }: RecipeStepsInputProps) {
   const [time, setTime] = useState<number>(0);
   const [amount, setAmount] = useState<number>(0);
+  const [guide, setGuide] = useState<string>('');
 
   const handleAddStep = () => {
     if (steps.length >= 10) {
       alert('최대 10개까지만 추가할 수 있습니다.');
       return;
     }
-    setSteps((prev) => [
-      ...prev,
-      { id: 0, recipe_id: 0, guide: '', time, amount },
-    ]);
+    setSteps((prev) => [...prev, { id: 0, recipe_id: 0, guide, time, amount }]);
     setTime(0);
     setAmount(0);
+    setGuide('');
   };
 
   return (
@@ -39,7 +38,8 @@ export default function RecipeStepsInput({
             className="flex justify-between items-center text-sm py-1 border-b last:border-none"
           >
             <span>
-              {index + 1} | {step.time}초에 물 {step.amount}ml 푸어
+              {index + 1} | {step.time}초에 물 {step.amount}ml 푸어 |{' '}
+              {step.guide}
             </span>
             <button
               onClick={() =>
@@ -69,6 +69,13 @@ export default function RecipeStepsInput({
           placeholder="물 양 (ml)"
         />
         <p>ml</p>
+        <input
+          type="text"
+          value={guide}
+          onChange={(e) => setGuide(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded"
+          placeholder="붓는 방법"
+        />
         <button
           onClick={handleAddStep}
           className="bg-primary-container/50 hover:bg-primary-container transition-all duration-300 text-primary px-4 py-2 rounded-full whitespace-nowrap"

@@ -1,5 +1,3 @@
 import { RecipeWithSteps } from '../../types/types';
 
-export interface GetRecipeListResponseType {
-  items: RecipeWithSteps[];
-}
+export type GetRecipeListResponseType = RecipeWithSteps[];
