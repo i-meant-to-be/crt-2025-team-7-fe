@@ -9,6 +9,7 @@ export default function HistoryDetailPage() {
   const newPk = pk ? parseInt(pk) : 0;
   const { data } = useGetHistory(newPk);
   const navigate = useNavigate();
+  const { data: recipeData } = useGetRecipe(data?.recipe_id || 0);
 
   if (!data) {
     return (
@@ -22,7 +23,6 @@ export default function HistoryDetailPage() {
     );
   }
 
-  const { data: recipeData } = useGetRecipe(data.recipe_id);
   if (!recipeData) return null;
 
   const handleSeeOriginalRecipe = () => {
