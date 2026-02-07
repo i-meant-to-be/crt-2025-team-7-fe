@@ -36,7 +36,7 @@ export default function RecipeListPage() {
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="카페인이 부족해요..."
+              placeholder="브루로그 레시피 검색하고 나의 카페인 시대 시작됐다"
               className="flex-1 bg-transparent border-none outline-none text-sm"
             />
           </div>

@@ -3,12 +3,17 @@ import { MenuType } from '../types/types';
 import { PropsWithChildren, useState } from 'react';
 import Button from '../components/Button/Button';
 import { BiLogOut } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 export default function Layout({ children }: PropsWithChildren) {
   const [menu, setMenu] = useState<MenuType>('RECIPE');
+  const navigate = useNavigate(); // Add useNavigate hook
 
   const handleMenuClick = (selectedMenu: MenuType) => {
     setMenu(selectedMenu);
+    if (selectedMenu === 'RECIPE') {
+      navigate('/recipe'); // Navigate to /recipe when RECIPE is clicked
+    }
   };
 
   const getButtonClass = (menuType: MenuType) => {

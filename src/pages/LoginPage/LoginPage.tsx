@@ -1,62 +1,96 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import ClearableInput from '../../components/ClearableInput/ClearableInput';
-import Checkbox from '../../components/Checkbox/Checkbox';
 
 export default function LoginPage() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [saveId, setSaveId] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [saveId, setSaveId] = useState(false);
   const navigate = useNavigate();
 
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: userName, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token; // Assuming the token is in the response
+
+        if (token) {
+          localStorage.setItem('jwtToken', token); // Save token to localStorage
+          navigate('/recipe'); // Navigate to /recipe page
+        } else {
+          alert('로그인에 실패했습니다.');
+        }
+      } else {
+        alert('로그인에 실패했습니다.');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('로그인 중 오류가 발생했습니다.');
+    }
+  };
+
   return (
-    <div className="w-full max-w-sm mx-auto mt-20 p-10 bg-white rounded shadow">
-      <div className="flex justify-center mb-8">
-        <img src="/logo.png" alt="로고" className="h-20" />
-      </div>
-      <h2 className="text-xl font-bold mb-10 text-center">서비스 이름</h2>
-      <div className="flex items-center mb-6">
-        <span className="w-12 text-sm text-gray-600">ID</span>
-        <ClearableInput
-          value={userName}
-          onChange={e => setUserName(e.target.value)}
-          onClear={() => setUserName('')}
-          className="flex-1"
+    <div className="bg-primary-container/30 min-h-screen flex items-center justify-center">
+      <div className="w-full max-w-sm p-8 bg-brown-50 rounded-lg shadow-md"> {/* Changed to bg-brown-50 for lighter background */}
+        <div className="flex justify-center mb-6">
+          <img src="/logo.png" alt="로고" className="h-16" />
+        </div>
+        <h2 className="text-lg font-semibold mb-8 text-center text-gray-800">로그인</h2>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-600 mb-2">아이디</label>
+          <ClearableInput
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
+            onClear={() => setUserName('')}
+            className="w-full border border-gray-400 rounded-md p-1.5 focus:ring-2 focus:ring-primary focus:outline-none text-gray-700 bg-brown-100" // Added bg-brown-100 for light brown background
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-600 mb-2">비밀번호</label>
+          <ClearableInput
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            onClear={() => setPassword('')}
+            type={showPassword ? "text" : "password"}
+            showPassword={showPassword}
+            onTogglePassword={() => setShowPassword(prev => !prev)}
+            className="w-full border border-gray-400 rounded-md p-1.5 focus:ring-2 focus:ring-primary focus:outline-none text-gray-700 bg-brown-100" // Added bg-brown-100 for light brown background
+          />
+        </div>
+        <div className="flex items-center mb-6">
+          <input
+            id="saveId"
+            type="checkbox"
+            checked={saveId}
+            onChange={() => setSaveId(!saveId)}
+            className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+          />
+          <label htmlFor="saveId" className="ml-2 text-sm text-gray-600">
+            아이디 저장
+          </label>
+        </div>
+        <Button
+          label="로그인"
+          onClick={handleLogin} // Updated to use handleLogin function
+          className="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-primary-dark transition-colors"
         />
+        <div className="text-center mt-4">
+          <button
+            onClick={() => navigate('/signup')}
+            className="text-sm text-gray-500 hover:underline"
+          >
+            회원가입
+          </button>
+        </div>
       </div>
-      <div className="flex items-center mb-6">
-        <span className="w-12 text-sm text-gray-600">PW</span>
-        <ClearableInput
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          onClear={() => setPassword('')}
-          type={showPassword ? "text" : "password"}
-          showPassword={showPassword}
-          onTogglePassword={() => setShowPassword(prev => !prev)}
-          className="flex-1"
-        />
-      </div>
-      <div className="flex items-center mb-14">
-        <Checkbox
-          checked={saveId}
-          onChange={setSaveId}
-        />
-        <span className="ml-2 text-sm text-gray-600">ID 저장</span>
-      </div>
-      <Button
-        label="로그인"
-        onClick={() => {/* 로그인 로직 */}}
-        className="w-full rounded-lg bg-orange-600 text-black py-4 font-bold text-lg hover:bg-orange-700 active:bg-orange-800 transition-colors duration-150"
-      />
-      <button
-        type="button"
-        className="w-full mt-2 text-sm text-gray-400 underline hover:text-gray-700 transition-colors duration-150 cursor-pointer"
-        onClick={() => navigate('/signup')}
-      >
-        회원가입
-      </button>
     </div>
   );
 }
