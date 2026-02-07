@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import ClearableInput from '../../components/ClearableInput/ClearableInput';
+import useLogin from '../../apis/hooks/useLogin';
 
 export default function LoginPage() {
   const [userName, setUserName] = useState('');
@@ -10,31 +11,27 @@ export default function LoginPage() {
   const [saveId, setSaveId] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: userName, password }),
-      });
+  const { mutate: login, isPending } = useLogin();
 
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.token; // Assuming the token is in the response
-
-        if (token) {
-          localStorage.setItem('jwtToken', token); // Save token to localStorage
-          navigate('/recipe'); // Navigate to /recipe page
-        } else {
-          alert('로그인에 실패했습니다.');
-        }
-      } else {
-        alert('로그인에 실패했습니다.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('로그인 중 오류가 발생했습니다.');
+  const handleLogin = () => {
+    if (!userName || !password) {
+      alert('아이디와 비밀번호를 입력해주세요.');
+      return;
     }
+
+    login(
+      { username: userName, password },
+      {
+        onSuccess: () => {
+          // 토큰 저장은 useLogin 훅에서 처리
+          navigate('/recipe');
+        },
+        onError: (error) => {
+          console.error('Login error:', error);
+          alert('로그인에 실패했습니다.');
+        },
+      },
+    );
   };
 
   return (
@@ -78,8 +75,9 @@ export default function LoginPage() {
           </label>
         </div>
         <Button
-          label="로그인"
+          label={isPending ? '로그인 중...' : '로그인'}
           onClick={handleLogin} // Updated to use handleLogin function
+          disabled={isPending}
           className="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-primary-dark transition-colors"
         />
         <div className="text-center mt-4">

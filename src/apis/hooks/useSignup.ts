@@ -8,7 +8,12 @@ interface SignupCredentials {
 }
 
 export default function useSignup() {
-  return useMutation<PostAuthSignupResponseType, unknown, SignupCredentials>({
+  const mutation = useMutation<PostAuthSignupResponseType, unknown, SignupCredentials>({
     mutationFn: ({ username, password }) => signup(username, password),
   });
+
+  return {
+    ...mutation,
+    isPending: mutation.isPending, // Explicitly expose isPending
+  };
 }

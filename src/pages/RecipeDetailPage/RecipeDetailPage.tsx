@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 
 const sampleRecipes = [
-  { id: 1, title: '브루 레시피 1', description: '설명 1', temp: '92', grind: '12', amount: '20', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
-  { id: 2, title: '브루 레시피 2', description: '설명 2', temp: '90', grind: '18', amount: '18', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
-  { id: 3, title: '브루 레시피 3', description: '설명 3', temp: '94', grind: '15', amount: '22', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
-  { id: 4, title: '브루 레시피 4', description: '설명 4', temp: '91', grind: '10', amount: '19', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
-  { id: 5, title: '브루 레시피 5', description: '설명 5', temp: '93', grind: '20', amount: '21', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
+  { id: 1, title: '브루 레시피 1', description: '설명 1', temperature: '92', grindSize: '12', amount: '20', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
+  { id: 2, title: '브루 레시피 2', description: '설명 2', temperature: '90', grindSize: '18', amount: '18', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
+  { id: 3, title: '브루 레시피 3', description: '설명 3', temperature: '94', grindSize: '15', amount: '22', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
+  { id: 4, title: '브루 레시피 4', description: '설명 4', temperature: '91', grindSize: '10', amount: '19', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
+  { id: 5, title: '브루 레시피 5', description: '설명 5', temperature: '93', grindSize: '20', amount: '21', steps: '1. 물을 끓입니다.\n2. 원두를 분쇄합니다.\n3. 원두를 필터에 넣고 물을 천천히 부어줍니다.' },
 ];
 
 export default function RecipeDetailPage() {
@@ -32,11 +32,11 @@ export default function RecipeDetailPage() {
           <div className="grid grid-cols-3 gap-4 mb-8">
             <div className="bg-gray-50 p-4 rounded-lg shadow text-center border border-gray-200">
               <h2 className="text-sm font-medium text-gray-700 mb-2 font-serif">물 온도</h2>
-              <p className="text-lg font-bold text-gray-900 font-cursive">{recipe.temp}°C</p>
+              <p className="text-lg font-bold text-gray-900 font-cursive">{recipe.temperature}°C</p>
             </div>
             <div className="bg-gray-50 p-4 rounded-lg shadow text-center border border-gray-200">
               <h2 className="text-sm font-medium text-gray-700 mb-2 font-serif">분쇄도</h2>
-              <p className="text-lg font-bold text-gray-900 font-cursive">{recipe.grind} 클릭</p>
+              <p className="text-lg font-bold text-gray-900 font-cursive">{recipe.grindSize} 클릭</p>
             </div>
             <div className="bg-gray-50 p-4 rounded-lg shadow text-center border border-gray-200">
               <h2 className="text-sm font-medium text-gray-700 mb-2 font-serif">원두</h2>

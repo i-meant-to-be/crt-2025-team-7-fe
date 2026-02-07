@@ -1,6 +1,4 @@
-import { useModal } from '../../hooks/useModal';
 import Layout from '../../layout/Layout';
-import RecipeAddModal from './components/RecipeAddModal';
 import Button from '../../components/Button/Button';
 import { MdDelete, MdAdd, MdSearch } from 'react-icons/md';
 import { useState } from 'react';
@@ -9,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 // 예시 카드 데이터
 const sampleRecipes = [
-  { id: 1, title: '브루 레시피 1', description: '설명 1', temp: '92', grind: '12', amount: '20' },
-  { id: 2, title: '브루 레시피 2', description: '설명 2', temp: '90', grind: '18', amount: '18' },
-  { id: 3, title: '브루 레시피 3', description: '설명 3', temp: '94', grind: '15', amount: '22' },
-  { id: 4, title: '브루 레시피 4', description: '설명 4', temp: '91', grind: '10', amount: '19' },
-  { id: 5, title: '브루 레시피 5', description: '설명 5', temp: '93', grind: '20', amount: '21' },
+  { id: 1, title: '브루 레시피 1', description: '설명 1', temperature: '92', grindSize: '12', beanWeight: '20' },
+  { id: 2, title: '브루 레시피 2', description: '설명 2', temperature: '90', grindSize: '18', beanWeight: '18' },
+  { id: 3, title: '브루 레시피 3', description: '설명 3', temperature: '94', grindSize: '15', beanWeight: '22' },
+  { id: 4, title: '브루 레시피 4', description: '설명 4', temperature: '91', grindSize: '10', beanWeight: '19' },
+  { id: 5, title: '브루 레시피 5', description: '설명 5', temperature: '93', grindSize: '20', beanWeight: '21' },
 ];
 
 export default function RecipeListPage() {
@@ -65,9 +63,9 @@ export default function RecipeListPage() {
               </div>
               {/* 우측 중앙: 정보 */}
               <div className="flex flex-row items-end justify-center text-xs text-gray-500 min-w-[120px] gap-2">
-                <div>{recipe.temp}°C</div>
-                <div>{recipe.grind}클릭</div>
-                <div>{recipe.amount}g</div>
+                <div>{recipe.temperature}°C</div>
+                <div>{recipe.grindSize}클릭</div>
+                <div>{recipe.beanWeight}g</div>
               </div>
             </div>
           ))}
