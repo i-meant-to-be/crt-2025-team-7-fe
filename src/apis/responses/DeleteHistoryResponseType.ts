@@ -1,0 +1,1 @@
+// DeleteHistoryResponseType placeholder
