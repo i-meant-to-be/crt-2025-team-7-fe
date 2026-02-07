@@ -1,0 +1,1 @@
+// GetHistoryResponseType placeholder
