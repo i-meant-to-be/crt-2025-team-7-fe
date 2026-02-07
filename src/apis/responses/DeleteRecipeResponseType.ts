@@ -1,1 +1,0 @@
-// DeleteRecipeResponseType placeholder

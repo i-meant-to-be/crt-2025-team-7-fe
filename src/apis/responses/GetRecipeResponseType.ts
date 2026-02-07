@@ -1,1 +1,0 @@
-// GetRecipeResponseType placeholder
