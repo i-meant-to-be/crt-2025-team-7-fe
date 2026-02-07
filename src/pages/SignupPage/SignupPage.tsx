@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Button from '../../components/Button/Button';
 import ClearableInput from '../../components/ClearableInput/ClearableInput';
-import Checkbox from '../../components/Checkbox/Checkbox';
 
 export default function SignupPage() {
   const [userName, setUserName] = useState('');
