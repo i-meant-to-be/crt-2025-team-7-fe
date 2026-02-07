@@ -1,1 +1,0 @@
-// PutHistoryRequestType placeholder

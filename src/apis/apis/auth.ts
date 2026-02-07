@@ -59,10 +59,9 @@ export async function login(
 export async function logout(
   refreshToken: string,
 ): Promise<PostAuthLogoutResponseType> {
-  const response = await post<PostAuthLogoutResponseType>(
-    ApiUrl.auth.logout,
-    { refresh: refreshToken },
-  );
+  const response = await post<PostAuthLogoutResponseType>(ApiUrl.auth.logout, {
+    refresh: refreshToken,
+  });
   return response;
 }
 
@@ -73,9 +72,12 @@ export async function logout(
 export async function refreshToken(
   refreshToken: string,
 ): Promise<TokenRefreshResponse> {
-  const response = await post<PostAuthTokenResponseType>(ApiUrl.auth.tokenRefresh, {
-    refresh: refreshToken,
-  });
+  const response = await post<PostAuthTokenResponseType>(
+    ApiUrl.auth.tokenRefresh,
+    {
+      refresh: refreshToken,
+    },
+  );
   return response;
 }
 // Note: profile/verify endpoints are not included in the minimal API list and

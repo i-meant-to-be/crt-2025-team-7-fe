@@ -3,13 +3,21 @@ export type ProcessType = 'WASHED' | 'NATURAL' | 'ANAEROBIC';
 export type MenuType = 'RECIPE' | 'BREWING_HISTORY';
 
 export interface Recipe {
-  id: string;
+  id: number;
   name: string;
   description: string;
   temperature: number;
-  grindSize: number;
-  beanWeight: number;
-  isShared: boolean;
+  grind_size: number;
+  bean_weight: number;
+  is_shared: boolean;
+}
+
+export interface RecipeSteps {
+  id: number;
+  recipe_id: number;
+  time: number;
+  amount: number;
+  guide: string;
 }
 
 export interface User {
@@ -18,12 +26,12 @@ export interface User {
 }
 
 export interface BrewingHistory {
-  id: string;
-  recipeId: string;
-  createdAt: Date;
+  id: number;
+  recipe_id: number;
+  created_at: Date;
   name: string;
   feedback: string;
-  beanData: {
+  bean_data: {
     country: string;
     estate: string;
     variety: string;

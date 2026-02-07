@@ -1,1 +1,0 @@
-// PatchHistoryResponseType placeholder
