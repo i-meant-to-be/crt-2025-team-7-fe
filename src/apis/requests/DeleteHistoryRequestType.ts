@@ -1,0 +1,1 @@
+// DeleteHistoryRequestType placeholder

@@ -1,0 +1,1 @@
+// PostHistoryResponseType placeholder
