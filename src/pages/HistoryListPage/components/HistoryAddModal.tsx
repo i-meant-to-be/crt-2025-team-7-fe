@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import { BeanData, ProcessType, Recipe } from '../../../types/types';
 import usePostHistory from '../../../apis/hooks/usePostHistory';
@@ -52,22 +52,27 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
   const { feedback, country, estate, variety, process, recipeId } = state;
 
   const { data } = useGetRecipeList();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { mutate } = usePostHistory(onSuccess);
+
+  useEffect(() => {
+    if (data && data.length > 0 && recipeId === -1) {
+      dispatch({ type: 'SET_FIELD', field: 'recipeId', value: data[0].id });
+    }
+  }, [data, recipeId]);
+
   if (!data) {
     return null;
-  } else {
-    dispatch({ type: 'SET_FIELD', field: 'recipeId', value: data.items[0].id });
   }
 
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = ITEMS_PER_PAGE;
-  const totalPages = Math.ceil(data!.items.length / itemsPerPage);
+  const totalPages = Math.ceil(data!.length / itemsPerPage);
 
-  const currentRecipes = data!.items.slice(
+  const currentRecipes = data!.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
 
-  const { mutate } = usePostHistory(onSuccess);
   const handleAddClick = () => {
     const beanData: BeanData = {
       country,
@@ -97,7 +102,7 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
         <label className="block mb-2 font-medium">레시피 이름</label>
         <div className="flex flex-col gap-4">
           <div className="flex flex-row gap-4 items-center">
-            <p>국가</p>
+            <p className="w-[50px]">국가</p>
             <input
               type="text"
               value={country}
@@ -114,7 +119,7 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
           </div>
 
           <div className="flex flex-row gap-4 items-center">
-            <p>농장</p>
+            <p className="w-[50px]">농장</p>
             <input
               type="text"
               value={estate}
@@ -131,7 +136,7 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
           </div>
 
           <div className="flex flex-row gap-4 items-center">
-            <p>품종</p>
+            <p className="w-[50px]">품종</p>
             <input
               type="text"
               value={variety}
@@ -148,7 +153,7 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
           </div>
 
           <div className="flex flex-row gap-4 items-center">
-            <p>가공 방식</p>
+            <p className="w-[50px]">가공 방식</p>
             <select
               value={process}
               onChange={(e) =>
@@ -209,7 +214,7 @@ export default function HistoryAddModal({ onSuccess }: HistoryAddModalProps) {
                 }
                 className="accent-primary"
               />
-              <span>{recipe.name}</span>
+              <span>{recipe.id}번 레시피</span>
             </label>
           ))}
         </div>

@@ -78,7 +78,7 @@ export default function RecipeAddModal({ onSuccess }: RecipeAddModalProps) {
           </div>
 
           <div>
-            <label className="block mb-2 font-medium">분쇄도 (g)</label>
+            <label className="block mb-2 font-medium">분쇄도 (클릭)</label>
             <input
               type="number"
               value={grindSize}
