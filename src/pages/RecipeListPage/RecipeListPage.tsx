@@ -2,6 +2,7 @@ import Layout from '../../layout/Layout';
 import Button from '../../components/Button/Button';
 import { MdDelete, MdAdd, MdSearch } from 'react-icons/md';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // 예시 카드 데이터
 const sampleRecipes = [
@@ -15,6 +16,7 @@ const sampleRecipes = [
 export default function RecipeListPage() {
   const [search, setSearch] = useState('');
   const filteredRecipes = sampleRecipes.filter(r => r.title.includes(search));
+  const navigate = useNavigate();
 
   return (
     <Layout>
@@ -48,7 +50,11 @@ export default function RecipeListPage() {
         {/* 카드 목록 */}
         <div className="flex flex-col gap-4 overflow-y-auto">
           {filteredRecipes.map(recipe => (
-            <div key={recipe.id} className="bg-white rounded shadow p-4 border border-gray-200 flex flex-row items-center justify-between">
+            <div
+              key={recipe.id}
+              className="bg-white rounded shadow p-4 border border-gray-200 flex flex-row items-center justify-between cursor-pointer hover:bg-primary/5 transition-colors"
+              onClick={() => navigate(`/recipe/${recipe.id}`)}
+            >
               {/* 좌측: 제목/설명 */}
               <div>
                 <div className="font-bold text-lg mb-2">{recipe.title}</div>
