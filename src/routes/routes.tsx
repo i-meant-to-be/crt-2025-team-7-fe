@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import SignupPage from '../pages/SignupPage/SignupPage';
 import RecipeListPage from '../pages/RecipeListPage/RecipeListPage';
+import RecipeDetailPage from '../pages/RecipeDetailPage/RecipeDetailPage';
 
 const routes = [
   {
@@ -9,12 +10,16 @@ const routes = [
     element: <LoginPage />,
   },
   {
-    path: '/register',
-    element: <RegisterPage />,
+    path: '/signup',
+    element: <SignupPage />,
   },
   {
     path: '/recipe',
     element: <RecipeListPage />,
+  },
+  {
+    path: '/recipe/:pk',
+    element: <RecipeDetailPage />,
   },
 ];
 

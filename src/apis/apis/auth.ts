@@ -51,7 +51,7 @@ export async function login(
   username: string,
   password: string,
 ): Promise<PostAuthTokenResponseType> {
-  const requestUrl: string = ApiUrl.auth.token;
+  const requestUrl: string = ApiUrl.auth.login;
   const requestBody: PostAuthTokenRequestType = {
     username,
     password,

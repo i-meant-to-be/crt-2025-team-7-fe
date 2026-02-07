@@ -5,6 +5,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 const viteConfig = defineViteConfig({
   plugins: [react(), tailwindcss()],
+  resolve: {
+    // react-query 가 루트/하위 패키지에 중복 설치되어도
+    // 하나의 인스턴스만 사용하도록 강제
+    dedupe: ['@tanstack/react-query'],
+  },
 });
 
 const vitestConfig = defineVitestConfig({

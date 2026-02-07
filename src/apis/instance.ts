@@ -82,7 +82,7 @@ axiosInstance.interceptors.response.use(
       }
 
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           subscribeTokenRefresh((token: string) => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (originalRequest.headers as any).Authorization = `Bearer ${token}`;

@@ -5,12 +5,14 @@ interface CheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
   className?: string; // Users can pass custom gaps or margins here
+  label?: string;
 }
 
 export default function Checkbox({
   checked,
   onChange,
   className = '',
+  label,
 }: CheckboxProps) {
   const generatedId = useId();
 
@@ -33,6 +35,7 @@ export default function Checkbox({
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
       />
+      {label && <span>{label}</span>}
     </label>
   );
 }
