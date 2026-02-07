@@ -34,7 +34,7 @@ export default function ClearableInput({
         <button
           type="button"
           onClick={onClear}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-xl text-neutral-400 hover:text-neutral-600"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-xl text-neutral-400 hover:text-neutral-600 cursor-pointer"
         >
           <IoMdCloseCircle />
         </button>
@@ -43,7 +43,7 @@ export default function ClearableInput({
         <button
           type="button"
           onClick={onTogglePassword}
-          className="absolute right-10 top-1/2 -translate-y-1/2 text-xl text-neutral-400 hover:text-neutral-600"
+          className="absolute right-10 top-1/2 -translate-y-1/2 text-xl text-neutral-400 hover:text-neutral-600 cursor-pointer"
         >
           {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
         </button>

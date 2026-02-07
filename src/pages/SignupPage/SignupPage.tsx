@@ -8,6 +8,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   return (
     <div className="w-full max-w-sm mx-auto mt-20 p-10 bg-white rounded shadow">
@@ -43,7 +44,9 @@ export default function SignupPage() {
           value={passwordConfirm}
           onChange={e => setPasswordConfirm(e.target.value)}
           onClear={() => setPasswordConfirm('')}
-          type="password"
+          type={showPasswordConfirm ? "text" : "password"}
+          showPassword={showPasswordConfirm}
+          onTogglePassword={() => setShowPasswordConfirm(prev => !prev)}
           className="flex-1"
         />
       </div>
