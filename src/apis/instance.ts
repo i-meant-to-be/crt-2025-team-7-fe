@@ -7,7 +7,6 @@ const baseUrl = isMockingEnabled
   ? undefined
   : import.meta.env.VITE_API_BASE_URL;
 
-
 export const axiosInstance = axios.create({
   baseURL: baseUrl,
   timeout: 5000,
@@ -35,7 +34,9 @@ axiosInstance.interceptors.request.use(
 
     // Development logging
     if (import.meta.env.DEV) {
-      console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`);
+      console.log(
+        `[API Request] ${config.method?.toUpperCase()} ${config.url}`,
+      );
     }
     return config;
   },
@@ -70,7 +71,9 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
+    const originalRequest = error.config as AxiosRequestConfig & {
+      _retry?: boolean;
+    };
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
@@ -82,7 +85,7 @@ axiosInstance.interceptors.response.use(
       }
 
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           subscribeTokenRefresh((token: string) => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (originalRequest.headers as any).Authorization = `Bearer ${token}`;
@@ -96,7 +99,9 @@ axiosInstance.interceptors.response.use(
       try {
         // Use a plain axios instance to avoid interceptor loop
         const refreshClient = axios.create({ baseURL: baseUrl });
-        const resp = await refreshClient.post(refreshUrl(), { refresh: refreshToken });
+        const resp = await refreshClient.post(refreshUrl(), {
+          refresh: refreshToken,
+        });
         const newAccessToken = resp.data?.access;
         const newRefreshToken = resp.data?.refresh;
 
@@ -109,7 +114,8 @@ axiosInstance.interceptors.response.use(
 
         onRefreshed(newAccessToken || '');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (originalRequest.headers as any).Authorization = `Bearer ${newAccessToken}`;
+        (originalRequest.headers as any).Authorization =
+          `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         tokenStorage.clearAllTokens();

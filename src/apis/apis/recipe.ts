@@ -17,6 +17,34 @@ export async function getRecipe(id: number): Promise<GetRecipeResponseType> {
   return response.data;
 }
 
+export async function getSharedRecipe(
+  id: number,
+): Promise<GetRecipeResponseType> {
+  const requestUrl: string = ApiUrl.recipe.list + 'all/' + id;
+  const response = await request<GetRecipeResponseType>(
+    'GET',
+    requestUrl,
+    null,
+    null,
+  );
+
+  return response.data;
+}
+
+export async function getAllSharedRecipe(
+  id: number,
+): Promise<GetRecipeListResponseType> {
+  const requestUrl: string = ApiUrl.recipe.list + 'all';
+  const response = await request<GetRecipeListResponseType>(
+    'GET',
+    requestUrl,
+    null,
+    null,
+  );
+
+  return response.data;
+}
+
 export async function deleteRecipe(id: number): Promise<boolean> {
   const requestUrl: string = ApiUrl.recipe.detail(id);
   const response = await request<void>('DELETE', requestUrl, null, null);

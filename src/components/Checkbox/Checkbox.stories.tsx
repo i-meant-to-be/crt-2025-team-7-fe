@@ -13,7 +13,6 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
   args: {
-    label: 'Click Me',
     checked: false,
     onChange: (checked) => console.log('Checkbox changed:', checked),
   },
@@ -21,7 +20,6 @@ export const Default: Story = {
 
 export const Checked: Story = {
   args: {
-    label: 'I am checked',
     checked: true,
     onChange: (checked) => console.log('Checkbox changed:', checked),
   },
