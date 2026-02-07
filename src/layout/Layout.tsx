@@ -33,21 +33,22 @@ export default function Layout({ children }: PropsWithChildren) {
 
         {/* Menu Buttons */}
         <div className="flex flex-col gap-2">
-          <Button
-            label="레시피"
-            className={getButtonClass('RECIPE')}
-            onClick={() => handleMenuClick('RECIPE')}
-          />
-          <Button
-            label="브루잉 기록"
-            className={getButtonClass('BREWING_HISTORY')}
-            onClick={() => handleMenuClick('BREWING_HISTORY')}
-          />
+          {[
+            { type: 'RECIPE', label: '레시피' },
+            { type: 'BREWING_HISTORY', label: '브루잉 기록' },
+          ].map((item) => (
+            <Button
+              key={item.type}
+              label={item.label}
+              className={getButtonClass(item.type as MenuType)}
+              onClick={() => handleMenuClick(item.type as MenuType)}
+            />
+          ))}
         </div>
 
         {/* Logout Button */}
         <div className="absolute bottom-12 left-0 right-0 flex justify-center">
-          <button className="bg-neutral-100 text-black p-3 rounded-full hover:bg-neutral-400 duration-200 transition-colors shadow-md size-10 flex items-center justify-center pointer-cursor">
+          <button className="bg-neutral-100 text-black p-3 rounded-full hover:bg-neutral-400 duration-200 transition-colors shadow-md size-10 flex items-center justify-center cursor-pointer">
             <BiLogOut className="size-full" />
           </button>
         </div>

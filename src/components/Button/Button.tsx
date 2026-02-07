@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 interface ButtonProps {
   label: string;
   onClick: () => void;
@@ -12,7 +14,10 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`flex flex-row text-[14px] px-[16px] py-[10px] rounded-full shadow-md items-center justify-center ${className}`}
+      className={clsx(
+        'flex flex-row text-[14px] px-[16px] py-[10px] rounded-full shadow-md items-center justify-center',
+        className,
+      )}
     >
       {label}
     </button>

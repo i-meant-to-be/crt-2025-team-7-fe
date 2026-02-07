@@ -23,7 +23,7 @@ export interface BrewingHistory {
   createdAt: Date;
   name: string;
   feedback: string;
-  bean_data: {
+  beanData: {
     country: string;
     estate: string;
     variety: string;
