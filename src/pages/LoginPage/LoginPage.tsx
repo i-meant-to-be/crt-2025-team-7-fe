@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   return (
     <div className="bg-primary-container/30 min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-sm p-8 bg-brown-50 rounded-lg shadow-md"> {/* Changed to bg-brown-50 for lighter background */}
+      <div className="w-full max-w-sm p-8 bg-primary-container/30 rounded-lg shadow-md"> {/* Updated background color */}
         <div className="flex justify-center mb-6">
           <img src="/logo.png" alt="로고" className="h-16" />
         </div>
