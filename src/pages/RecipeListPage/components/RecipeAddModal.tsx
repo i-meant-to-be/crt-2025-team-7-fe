@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../../../components/Button/Button';
 import usePostRecipe from '../../../apis/hooks/usePostRecipe';
 import { PostRecipeRequestType } from '../../../apis/requests/PostRecipeRequestType';
@@ -18,7 +18,7 @@ export default function RecipeAddModal({ onSuccess }: RecipeAddModalProps) {
   const [isShareAvailable, setIsShareAvailable] = useState(false);
   const [steps, setSteps] = useState<RecipeSteps[]>([]);
 
-  const { mutate, isPending, isError, error } = usePostRecipe(onSuccess);
+  const { mutate } = usePostRecipe(onSuccess);
   const handleAddClick = () => {
     const requestBody: PostRecipeRequestType = {
       name,
