@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import RecipeAddModal from './components/RecipeAddModal';
+import RecipeAddModal from './RecipeAddModal';
 
 const meta: Meta<typeof RecipeAddModal> = {
   title: 'components/RecipeAddModal',
