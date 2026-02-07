@@ -9,12 +9,14 @@
     "lint:tsc": "npx tsc --build --noEmit",
     "lint:eslint": "eslint .",
     "lint": "npm run lint:eslint && npm run lint:tsc",
-    "preview": "vite preview",
+    "preview": "vite preview --port 3000",
+    "bp": "tsc -b && vite build && vite preview --port 3000",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-query": "^5.90.20",
     "axios": "^1.13.4",
     "clsx": "^2.1.1",
     "react": "^19.2.4",
