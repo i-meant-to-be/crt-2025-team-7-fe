@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { useId } from 'react';
 
 interface CheckboxProps {
-  label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
   className?: string; // Users can pass custom gaps or margins here
@@ -27,8 +26,8 @@ export default function Checkbox({
           size-[clamp(16px,1.5vw,20px)] 
           rounded-[4px] 
           border-gray-300 
-          text-[#3E2723] 
-          focus:ring-[#FFAB00]
+          text-primary
+          focus:ring-white
           cursor-pointer
         "
         checked={checked}
