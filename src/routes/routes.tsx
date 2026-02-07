@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignupPage from '../pages/SignupPage/SignupPage';
+import RecipeListPage from '../pages/RecipeListPage/RecipeListPage';
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
   {
     path: '/signup',
     element: <SignupPage />,
+  },
+  {
+    path: '/recipe',
+    element: <RecipeListPage />,
   },
 ];
 
