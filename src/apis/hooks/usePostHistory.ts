@@ -2,11 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 import { PostHistoryRequestType } from '../requests/PostHistoryRequestType';
 import { postHistory } from '../apis/history';
 
-export default function usePostHistory(onSUccess: () => void) {
+export default function usePostHistory(onSuccess: () => void) {
   return useMutation({
-    mutationFn: async (params: PostHistoryRequestType) => postHistory(params),
+    mutationFn: (params: PostHistoryRequestType) => postHistory(params),
     onSuccess: () => {
-      onSUccess();
+      onSuccess();
     },
   });
 }

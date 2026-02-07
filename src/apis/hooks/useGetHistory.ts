@@ -4,6 +4,6 @@ import { getHistory } from '../apis/history';
 export default function useGetHistory(id: number) {
   return useQuery({
     queryKey: ['history', id],
-    queryFn: async () => getHistory(id),
+    queryFn: () => getHistory(id),
   });
 }

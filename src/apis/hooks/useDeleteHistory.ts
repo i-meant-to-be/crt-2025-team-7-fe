@@ -4,14 +4,14 @@ import { deleteHistory } from '../apis/history';
 // useDeleteHistory hook placeholder
 export default function useDeleteHistory(id: number) {
   return useMutation({
-    mutationFn: async () => await deleteHistory(id),
+    mutationFn: () => deleteHistory(id),
     onSuccess: () => {
       setTimeout(() => {
-        alert('레시피가 제거되었습니다.');
+        alert('브루잉 기록이 제거되었습니다.');
       }, 300);
     },
     onError: (error) => {
-      console.error('Error deleting recipe:', error);
+      console.error('Error deleting brewing history:', error);
     },
   });
 }

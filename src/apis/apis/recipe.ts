@@ -1,20 +1,3 @@
-// Template
-/*
-export async function apiFunc(
-  
-): Promise<ReturnType> {
-    const requestUrl: string = ApiUrl.
-    const response = await request<ReturnType>(
-        method,
-        requestUrl,
-        data,
-        params,
-    );
-
-    return response.data;
-}
-*/
-
 import { ApiUrl } from '../endpoints';
 import { request } from '../primitives';
 import { PostRecipeRequestType } from '../requests/PostRecipeRequestType';

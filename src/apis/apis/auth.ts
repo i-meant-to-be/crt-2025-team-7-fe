@@ -4,20 +4,19 @@
  */
 
 import { ApiUrl } from '../endpoints';
-import { post } from '../primitives';
 import type { PostAuthSignupRequestType } from '../requests/PostAuthSignupRequestType';
 import type { PostAuthSignupResponseType } from '../responses/PostAuthSignupResponseType';
 import type { PostAuthTokenRequestType } from '../requests/PostAuthTokenRequestType';
 import type { PostAuthTokenResponseType } from '../responses/PostAuthTokenResponseType';
 import type { PostAuthLogoutResponseType } from '../responses/PostAuthLogoutResponseType';
 import type { PostAuthRefreshRequestType } from '../requests/PostAuthRefreshRequestType';
+import { request } from '../primitives';
+import { PostAuthLogoutRequestType } from '../requests/PostAuthLogoutRequestType';
 
 // Types
 // Signup request/response types are defined under requests/ and responses/
 export type LoginRequest = PostAuthTokenRequestType;
-
 export type AuthResponse = PostAuthTokenResponseType;
-
 export type TokenRefreshResponse = PostAuthTokenResponseType;
 
 /**
@@ -29,11 +28,18 @@ export async function signup(
   username: string,
   password: string,
 ): Promise<PostAuthSignupResponseType> {
-  const response = await post<PostAuthSignupResponseType>(ApiUrl.auth.signup, {
+  const requestUrl: string = ApiUrl.auth.signup;
+  const requestBody: PostAuthSignupRequestType = {
     username,
     password,
-  });
-  return response;
+  };
+  const response = await request<PostAuthSignupResponseType>(
+    'POST',
+    requestUrl,
+    requestBody,
+    null,
+  );
+  return response.data;
 }
 
 /**
@@ -45,11 +51,19 @@ export async function login(
   username: string,
   password: string,
 ): Promise<PostAuthTokenResponseType> {
-  const response = await post<PostAuthTokenResponseType>(ApiUrl.auth.token, {
+  const requestUrl: string = ApiUrl.auth.token;
+  const requestBody: PostAuthTokenRequestType = {
     username,
     password,
-  });
-  return response;
+  };
+  const response = await request<PostAuthTokenResponseType>(
+    'POST',
+    requestUrl,
+    requestBody,
+    null,
+  );
+
+  return response.data;
 }
 
 /**
@@ -59,10 +73,17 @@ export async function login(
 export async function logout(
   refreshToken: string,
 ): Promise<PostAuthLogoutResponseType> {
-  const response = await post<PostAuthLogoutResponseType>(ApiUrl.auth.logout, {
+  const requestUrl: string = ApiUrl.auth.logout;
+  const requestBody: PostAuthLogoutRequestType = {
     refresh: refreshToken,
-  });
-  return response;
+  };
+  const response = await request<PostAuthLogoutResponseType>(
+    'POST',
+    requestUrl,
+    requestBody,
+    null,
+  );
+  return response.data;
 }
 
 /**
@@ -72,13 +93,17 @@ export async function logout(
 export async function refreshToken(
   refreshToken: string,
 ): Promise<TokenRefreshResponse> {
-  const response = await post<PostAuthTokenResponseType>(
-    ApiUrl.auth.tokenRefresh,
-    {
-      refresh: refreshToken,
-    },
+  const requestUrl: string = ApiUrl.auth.tokenRefresh;
+  const requestBody: PostAuthRefreshRequestType = {
+    refresh: refreshToken,
+  };
+  const response = await request<PostAuthTokenResponseType>(
+    'POST',
+    requestUrl,
+    requestBody,
+    null,
   );
-  return response;
+  return response.data;
 }
 // Note: profile/verify endpoints are not included in the minimal API list and
 // therefore omitted here. Add them back when the backend exposes those routes.

@@ -4,6 +4,6 @@ import { getRecipeList } from '../apis/recipe';
 export default function useGetRecipeList() {
   return useQuery({
     queryKey: ['recipeList'],
-    queryFn: async () => getRecipeList(),
+    queryFn: () => getRecipeList(),
   });
 }
